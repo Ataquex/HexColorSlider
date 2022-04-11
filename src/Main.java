@@ -1,19 +1,9 @@
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
 
 public class Main {
     public static void main(String[] args){
-
-        String[][] CaseArray = {
-                {"255", "void", "0"},
-                {"void", "255", "0"},
-                {"0", "255", "void"},
-                {"0", "void", "255"},
-                {"void", "0", "255"},
-                {"255", "0", "void"},
-        };
 
         JFrame jframe = new JFrame();
         JPanel mainpanel = new JPanel();
@@ -22,11 +12,11 @@ public class Main {
         JLabel LabelRowValue = new JLabel();
         JLabel LabelColumnValue = new JLabel();
         JLabel LabelCalculatedValue = new JLabel();
-        JSlider slider = new JSlider(SwingConstants.HORIZONTAL, 0, 6*255, 0);
+        JSlider slider = new JSlider(SwingConstants.HORIZONTAL, 0, 234*255, 0);
 
 
         ChangeListener sliderListener = e -> {
-            String[] ValueArray = CalculateHexColor(slider.getValue(), CaseArray);
+            String[] ValueArray = CalculateHexColor(slider.getValue(), slider.getMinimum(), slider.getMaximum());
 
             LabelHexValue.setText(ValueArray[0]);
             mainpanel.setBackground(Color.decode(ValueArray[0]));
@@ -56,7 +46,28 @@ public class Main {
         jframe.setVisible(true);
     }
 
-    private static String[] CalculateHexColor(int IntHexColor, String[][] CaseArray){
+    private static int cutDecimal(float floatvalue){
+        return (int) floatvalue;
+    }
+
+    private static String[] CalculateHexColor(int IntHexColor, int Min, int Max){
+
+
+
+        float FloatHexColor = IntHexColor;
+        int span = Max-Min;
+        float scale = span/(6*255);
+        FloatHexColor = FloatHexColor/scale;
+        IntHexColor = cutDecimal(FloatHexColor);
+
+        String[][] CaseArray = {
+                {"255", "void", "0"},
+                {"void", "255", "0"},
+                {"0", "255", "void"},
+                {"0", "void", "255"},
+                {"void", "0", "255"},
+                {"255", "0", "void"},
+        };
 
         int row = 0;
         for(int i=0; i<=5; i++){
