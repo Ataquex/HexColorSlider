@@ -13,7 +13,7 @@ public class Main {
         JLabel LabelColumnValue = new JLabel();
         JLabel LabelCalculatedValue = new JLabel();
 
-        JSlider slider = new JSlider(SwingConstants.HORIZONTAL, 0, 13456, 0);
+        JSlider slider = new JSlider(SwingConstants.HORIZONTAL, 125135, 613434516, 125135);
         HexColorCalculator hcc = new HexColorCalculator(slider);
 
 
@@ -26,7 +26,7 @@ public class Main {
             LabelSliderValue.setText("sliderScaledValue: "+hcc.getScaledSliderValue()+"   ");
             LabelRowValue.setText("rowValue: "+hcc.getRow()+"   ");
             LabelColumnValue.setText("columnValue: "+hcc.getCloumn()+"   ");
-            LabelCalculatedValue.setText("CalculatedValue: "+hcc.getCalculatedValue()+"   ");
+            LabelCalculatedValue.setText("CalculatedRGBValue: "+hcc.getCalculatedRGBValue()+"   ");
         };
         slider.addChangeListener(sliderListener);
         slider.setPreferredSize(new Dimension(1100, 20));

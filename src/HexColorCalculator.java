@@ -5,7 +5,7 @@ public class HexColorCalculator {
     private int row;
     private int cloumn;
     private int scaledSliderValue;
-    private String calculatedValue;
+    private String calculatedRGBValue;
 
 
     public HexColorCalculator(JSlider s){
@@ -15,16 +15,14 @@ public class HexColorCalculator {
     public String CalculateHexColor(){
         int Max = this.slider.getMaximum();
         int Min = this.slider.getMinimum();
-        int IntHexColor = this.slider.getValue();
+        int IntHexColor = this.slider.getValue()-Min;
 
 
         float FloatHexColor = IntHexColor;
         float span = Max-Min;
         float scale = span/(6*255);
         FloatHexColor = FloatHexColor/scale;
-        System.out.print(FloatHexColor+"   ");
         IntHexColor = (int)FloatHexColor;
-        System.out.println(IntHexColor);
 
         String[][] CaseArray = {
                 {"255", "void", "0"},
@@ -73,7 +71,7 @@ public class HexColorCalculator {
         this.row = row;
         this.cloumn = column;
         this.scaledSliderValue = IntHexColor;
-        this.calculatedValue = CalculatedValue;
+        this.calculatedRGBValue = CalculatedValue;
         return String.valueOf(sb);
     }
 
@@ -89,7 +87,7 @@ public class HexColorCalculator {
         return this.scaledSliderValue;
     }
 
-    public String getCalculatedValue(){
-        return this.calculatedValue;
+    public String getCalculatedRGBValue(){
+        return this.calculatedRGBValue;
     }
 }
